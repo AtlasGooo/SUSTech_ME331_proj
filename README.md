@@ -15,7 +15,7 @@ opencv-python: <https://pypi.org/project/opencv-python/>  version 4
 numpy: <https://numpy.org/>
 
 ## The actors of the project
-(in no rank)  
+(not list in order)  
 CHEN Zhenyang  
 ZHAO Yuntian  
 GAO Chengyuan  
