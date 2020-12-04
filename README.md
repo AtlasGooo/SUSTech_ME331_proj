@@ -11,7 +11,7 @@ The hardware of the project includes the robot arm, using the Dynamixel AX-12A s
 ### The software of the project
 The software part of the project is the python script. It uses opencv-python and numpy for image processing, then map the processed critical tarjectory point to the surface to draw on. Then inverse kinematics is then preformed to map the pose of the end-of-effector to configure space of the joints. Finally the Dynamixel SDK is called to drive the servos.  
 The servo driver is a modified version of <https://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_sdk/sample_code/python_read_write_protocol_1_0/#python-read-write-protocol-10>  
-opencv-python: <https://pypi.org/project/opencv-python/>  version 4
+opencv-python: <https://pypi.org/project/opencv-python/>  version 4  
 numpy: <https://numpy.org/>
 
 ## The actors of the project
