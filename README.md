@@ -1,5 +1,13 @@
 # Project for 2020 Fall SUSTech ME331 - Robot Modelling and Control
 
+## How to run the code
+- make sure you have the same configure of the robot hardware, or at least similar. If your robot hardware setup is not identical as ours, please modify corresponding parameters in the code.
+- make sure you have the following packages and have the SDK installed  
+```numpy``` ```opencv-python```   
+SDK installation<https://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_sdk/library_setup/python_windows/#python-windows> or <https://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_sdk/library_setup/python_linux/#python-linux>
+- Navigate to ```test/protocol1_0```
+- run the command ```python proj.py```
+- use command line to interact with the program
 ## The Aim of the Project
 The project aims to build a 5-dof decoupled serial robot arm with spherical wrist(no rotation freedom)  
 The robot arm is supposed to write and draw on plane or sphere surface, with a given input image.
