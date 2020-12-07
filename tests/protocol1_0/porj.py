@@ -12,15 +12,16 @@ DEVICENAME = 'COM5'
 
 '''
 DH parameters, in milimeters, data-type float
-rzi -> the ith joint, rotate Z axis
-txi -> the ith joint, translate X axis
+r?i -> the ith joint, rotate ? axis
+t?i -> the ith joint, translate ? axis
 '''
+dh_zero = 0.0
 DHPARAM = {
-    'rz1': None, 'tz1': 0, 'tx1': 0, 'rx1': 0,
-    'rz2': None, 'tz2': 0, 'tx2': 0, 'rx2': 0,
-    'rz3': None, 'tz3': 0, 'tx3': 0, 'rx3': 0,
-    'rz4': None, 'tz4': 0, 'tx4': 0, 'rx4': 0,
-    'rz5': None, 'tz5': 0, 'tx5': 0, 'rx5': 0
+    'tz1': 0.0, 'tx1': dh_zero, 'rx1': -np.pi,
+    'tz2': dh_zero, 'tx2': 0.0, 'rx2': dh_zero,
+    'tz3': dh_zero, 'tx3': 0.0, 'rx3': dh_zero,
+    'tz4': dh_zero, 'tx4': dh_zero, 'rx4': np.pi,
+    'tz5': dh_zero, 'tx5': 0.0, 'rx5': dh_zero
 }
 
 '''
@@ -41,7 +42,7 @@ PLANE = {
 }
 
 '''
-2D BALL parameters, in milimeters, data-type float
+3D BALL parameters, in milimeters, data-type float
 CENTER -> center of ball w.r.t. {w} in homogeneous transfermation matrix
 RADIUS
 '''
@@ -138,9 +139,9 @@ class Servo:
 
     def write(self, DXL_IDS, POS, closed_loop=False):
         assert len(DXL_IDS) == len(POS)
-        for _ in range(len(DXL_IDS)):
+        for DXL_ID, pos in zip(DXL_IDS, POS):
             dxl_comm_result, dxl_error = self.packetHandler.write4ByteTxRx(
-                self.portHandler, DXL_IDS[_], self.ADDR_MX_GOAL_POSITION, POS[_])
+                self.portHandler, DXL_ID, self.ADDR_MX_GOAL_POSITION, pos)
             if dxl_comm_result != self.COMM_SUCCESS:
                 print("%s" % self.packetHandler.getTxRxResult(dxl_comm_result))
             elif dxl_error != 0:
