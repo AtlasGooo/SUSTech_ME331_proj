@@ -5,10 +5,10 @@ from dynamixel_sdk import *
 import os
 
 # servo IDs
-DXL_IDS = [1, 2, 3, 4, 5]
+DXL_IDS = [4, 12, 16, 18]
 # initial q of servos, [0-deg, 300-deg] -> [0, 1023], data-type int
-INIT_POS = [100, 100, 100, 100, 100]
-DEVICENAME = 'COM5'
+INIT_POS = [825, 825, 512, 512]
+DEVICENAME = 'COM9'
 
 '''
 DH parameters, in milimeters, data-type float
@@ -72,7 +72,7 @@ class Servo:
         TORQUE_DISABLE=0,
         DXL_MINIMUM_POSITION_VALUE=0,
         DXL_MAXIMUM_POSITION_VALUE=1023,
-        DXL_MOVING_STATUS_THRESHOLD=5,
+        DXL_MOVING_STATUS_THRESHOLD=3,
         COMM_SUCCESS=0,
         COMM_TX_FAIL=-1001,
         init_b4_del=True,
@@ -223,4 +223,16 @@ robot = Robot(
     PLANE=PLANE,
     BALL=BALL
 )
-robot.move(robot.process_input())
+# robot.move(robot.process_input())
+
+print(robot.servo.read(robot.servo.DXL_IDS))
+
+t0 = time.time()
+
+for i, x in enumerate(range(512, 302, -5)):
+    t1 = time.time()
+    while t1 - t0 > 0.1:
+        pass
+    robot.servo.write(robot.servo.DXL_IDS,
+                      [825 - 5 * i, 825 - 5 * i, x, 512])
+    t0 = t1
