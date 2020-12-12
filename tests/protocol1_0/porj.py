@@ -5,9 +5,9 @@ from dynamixel_sdk import *
 import os
 
 # servo IDs
-DXL_IDS = [4, 12, 16, 18]
+DXL_IDS = [10, 4, 12, 16, 18]
 # initial q of servos, [0-deg, 300-deg] -> [0, 1023], data-type int
-INIT_POS = [825, 825, 512, 512]
+INIT_POS = [512, 825, 825, 512, 512]
 DEVICENAME = 'COM9'
 
 '''
@@ -229,10 +229,10 @@ print(robot.servo.read(robot.servo.DXL_IDS))
 
 t0 = time.time()
 
-for i, x in enumerate(range(512, 302, -5)):
+for i, x in enumerate(range(512, 412, -3)):
     t1 = time.time()
-    while t1 - t0 > 0.1:
-        pass
+    while t1 - t0 < 0.06:
+        t1 = time.time()
     robot.servo.write(robot.servo.DXL_IDS,
-                      [825 - 5 * i, 825 - 5 * i, x, 512])
+                      [512, 825 - 5 * i, 825 - 5 * i, x, 512])
     t0 = t1
